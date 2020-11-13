@@ -1,0 +1,4 @@
+2020-11-13 12:20:51,580 Process-7  a.b.c ERROR    Random message #1
+2020-11-13 12:20:51,605 Process-9  d.e.f CRITICAL Random message #3
+2020-11-13 12:20:51,615 Process-10 a.b.c WARNING  Random message #2
+2020-11-13 12:20:51,617 Process-5  d.e.f ERROR    Random message #2
