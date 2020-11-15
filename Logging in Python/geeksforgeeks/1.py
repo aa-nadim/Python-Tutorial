@@ -2,13 +2,10 @@ import logging
 import logging.config
 
 def main():
-    # Configure the logging system
     logging.basicConfig(
         filename='app.log',
         level=logging.WARNING,
         format='%(levelname)s:%(asctime)s:%(message)s')
-
-    # Variables (to make the calls that follow work)
     hostname = 'www.python.org'
     item = 'spam'
     filename = 'data.csv'

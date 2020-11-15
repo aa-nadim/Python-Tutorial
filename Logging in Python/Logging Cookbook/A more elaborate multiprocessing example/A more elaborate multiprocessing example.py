@@ -5,14 +5,7 @@ from multiprocessing import Process, Queue, Event, current_process
 import os
 import random
 import time
-
 class MyHandler:
-    """
-    A simple handler for logging events. It runs in the listener process and
-    dispatches events to loggers based on the name in the received record,
-    which then get dispatched, by the logging system, to the handlers
-    configured for those loggers.
-    """
 
     def handle(self, record):
         if record.name == "root":
@@ -27,14 +20,7 @@ class MyHandler:
             logger.handle(record)
 
 def listener_process(q, stop_event, config):
-    """
-    This could be done in the main process, but is just done in a separate
-    process for illustrative purposes.
 
-    This initialises logging according to the specified configuration,
-    starts the listener and waits for the main process to signal completion
-    via the event. The listener is then stopped, and the process exits.
-    """
     logging.config.dictConfig(config)
     listener = logging.handlers.QueueListener(q, MyHandler())
     listener.start()
@@ -51,19 +37,7 @@ def listener_process(q, stop_event, config):
     listener.stop()
 
 def worker_process(config):
-    """
-    A number of these are spawned for the purpose of illustration. In
-    practice, they could be a heterogeneous bunch of processes rather than
-    ones which are identical to each other.
 
-    This initialises logging according to the specified configuration,
-    and logs a hundred messages with random levels to randomly selected
-    loggers.
-
-    A small sleep is added to allow other processes a chance to run. This
-    is not strictly needed, but it mixes the output from the different
-    processes a bit more than if it's left out.
-    """
     logging.config.dictConfig(config)
     levels = [logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR,
               logging.CRITICAL]

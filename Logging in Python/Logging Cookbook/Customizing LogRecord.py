@@ -1,3 +1,4 @@
+import logging
 old_factory = logging.getLogRecordFactory()
 
 def record_factory(*args, **kwargs):

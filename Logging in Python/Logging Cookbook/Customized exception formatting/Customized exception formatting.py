@@ -1,12 +1,8 @@
 import logging
-
 class OneLineExceptionFormatter(logging.Formatter):
     def formatException(self, exc_info):
-        """
-        Format an exception so that it prints on a single line.
-        """
         result = super(OneLineExceptionFormatter, self).formatException(exc_info)
-        return repr(result)  # or format into one line however you want to
+        return repr(result)
 
     def format(self, record):
         s = super(OneLineExceptionFormatter, self).format(record)
@@ -15,14 +11,13 @@ class OneLineExceptionFormatter(logging.Formatter):
         return s
 
 def configure_logging():
-    fh = logging.FileHandler('output.txt', 'w')
+    fh = logging.FileHandler('output.log', 'w')
     f = OneLineExceptionFormatter('%(asctime)s|%(levelname)s|%(message)s|',
                                   '%d/%m/%Y %H:%M:%S')
     fh.setFormatter(f)
     root = logging.getLogger()
     root.setLevel(logging.DEBUG)
     root.addHandler(fh)
-
 def main():
     configure_logging()
     logging.info('Sample message')
@@ -30,6 +25,5 @@ def main():
         x = 1 / 0
     except ZeroDivisionError as e:
         logging.exception('ZeroDivisionError: %s', e)
-
 if __name__ == '__main__':
     main()
