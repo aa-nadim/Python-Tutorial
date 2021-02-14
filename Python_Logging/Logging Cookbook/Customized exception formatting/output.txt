@@ -1,0 +1,2 @@
+13/11/2020 12:07:31|INFO|Sample message|
+13/11/2020 12:07:31|ERROR|ZeroDivisionError: division by zero|'Traceback (most recent call last):\n  File "D:/Programming/Python/Python-Tutorial/Logging in Python/Customized exception formatting/1.py", line 30, in main\n    x = 1 / 0\nZeroDivisionError: division by zero'|
